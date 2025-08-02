@@ -45,13 +45,16 @@
   <button class="btn btn-a" onclick="playSound('sound1.mp3')">🔊 Aボタン</button>
   <button class="btn btn-b" onclick="playSound('sound2.mp3')">🔊 Bボタン</button>
 
-  <audio id="audioPlayer"></audio>
-
   <script>
+    let audio = new Audio();
+
     function playSound(file) {
-      const audio = document.getElementById("audioPlayer");
+      audio.pause();
       audio.src = file;
-      audio.play();
+      audio.load();
+      audio.play().catch(e => {
+        console.log('再生エラー:', e);
+      });
     }
   </script>
 
